@@ -1,10 +1,11 @@
 return {
     -- nord
-    "nordtheme/vim",
+    "shaunsingh/nord.nvim",
+    "andersevenrud/nordic.nvim",
     lazy = false,
     priority = 1000,
     config = function()
-      vim.cmd([[colorscheme nord]])
+      vim.cmd([[colorscheme nordic]])
     end,
 }
 

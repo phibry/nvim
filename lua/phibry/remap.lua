@@ -25,9 +25,6 @@ vim.keymap.set("v", "<leader>y", "\"+y")
 vim.keymap.set("n", "<leader>Y", "\"+Y")
 
 vim.keymap.set("n", "<leader>d", "\"_d")
-vim.keymap.set("n", "<leader>d", "\"_d")
-
-vim.keymap.set("n", "Q", "<nop>")
 
 -- vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
 -- vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
@@ -63,3 +60,8 @@ vim.keymap.set("n", "<A-Down>", ":resize +5<CR>")
 vim.keymap.set("n", "<A-Up>", ":resize -5<CR>")
 vim.keymap.set("n", "<A-Right>", ":vertical resize -5<CR>")
 
+vim.keymap.set("n", "<leader>o", ":SymbolsOutline<CR>")
+
+vim.keymap.set("n", "<leader><leader>", function()
+    vim.cmd("so")
+end)
