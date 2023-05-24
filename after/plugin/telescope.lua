@@ -10,7 +10,7 @@ vim.keymap.set('n', '<leader>ph', builtin.help_tags, {})
 require('telescope').setup{
     defaults = {
         preview = {
-            treesitter = false
+            treesitter = true
         }
     },
 }
