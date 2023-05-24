@@ -14,6 +14,7 @@ lsp.ensure_installed({
     'gopls',
     'cssls',
     'emmet_ls',
+    'lemminx'
 })
 
 local cmp = require("cmp")

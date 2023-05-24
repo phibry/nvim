@@ -15,6 +15,16 @@ local colors = {
     red      = '#bf616a',
 }
 
+-- harpoon
+local function harpoon()
+    local mark_idx = require("harpoon.mark").get_current_index()
+    if mark_idx == nil then
+        return ""
+    end
+
+    return mark_idx
+end
+
 local conditions = {
     buffer_not_empty = function()
         return vim.fn.empty(vim.fn.expand('%:t')) ~= 1
@@ -93,6 +103,10 @@ ins_left {
         return { fg = mode_color[vim.fn.mode()] }
     end,
     padding = { right = 1 },
+}
+
+ins_left {
+    harpoon,
 }
 
 
