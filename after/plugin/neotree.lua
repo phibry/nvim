@@ -4,6 +4,8 @@ require("neo-tree").setup({
     enable_git_status = true,
     window = {
         position = "right",
-        -- position = "float",
     },
 })
+
+vim.keymap.set("n", "<leader>rr", ":Neotree reveal<CR>")
+vim.keymap.set("n", "<leader>ee", ":Neotree toggle<cr>")
