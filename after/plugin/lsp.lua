@@ -64,7 +64,7 @@ lsp.on_attach(function(client, bufnr)
     vim.keymap.set("n", "ca", function() vim.lsp.buf.code_action() end, opts)
     vim.keymap.set("n", "rn", function() vim.lsp.buf.rename() end, opts)
     vim.keymap.set("n", "gh", function() vim.lsp.buf.signature_help() end, opts)
-    vim.keymap.set({ "n", "x" }, "<leader>f", function()
+    vim.keymap.set({ "n", "x" }, "<leader>fc", function()
         vim.lsp.buf.format({
             async = false,
             timeout_ms = 10000
@@ -72,12 +72,18 @@ lsp.on_attach(function(client, bufnr)
     end, opts)
 
     if client.name == "jdtls" then
-        vim.keymap.set("n", "oi", "<Cmd>lua require'jdtls'.organize_imports()<CR>")
-        vim.keymap.set("n", "em", "<Cmd>lua require('jdtls').extract_method(true)<CR>")
-        vim.keymap.set("n", "ev", "<Cmd>lua require('jdtls').extract_variable(true)<CR>")
-        vim.keymap.set("n", "ec", "<Cmd>lua require('jdtls').extract_constant(true)<CR>")
+        vim.keymap.set("n", "<leader>oi", "<Cmd>lua require'jdtls'.organize_imports()<CR>")
+        vim.keymap.set("n", "<leader>em", "<Cmd>lua require('jdtls').extract_method(true)<CR>")
+        vim.keymap.set("n", "<leader>ev", "<Cmd>lua require('jdtls').extract_variable(true)<CR>")
+        vim.keymap.set("n", "<leader>ec", "<Cmd>lua require('jdtls').extract_constant(true)<CR>")
+    end
+
+    if client.name == "tsserver" then
+        vim.keymap.set("n", "<leader>oi", ":TypescriptOrganizeImports<CR>")
     end
 end)
+
+require("typescript").setup({})
 
 require("lspconfig").lua_ls.setup({
     settings = {

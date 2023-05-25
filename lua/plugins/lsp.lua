@@ -24,5 +24,8 @@ return {
 
         -- java
         { "mfussenegger/nvim-jdtls" },
+
+        -- typescript
+        { "jose-elias-alvarez/typescript.nvim" },
     }
 }
