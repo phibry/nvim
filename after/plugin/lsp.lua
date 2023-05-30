@@ -50,6 +50,7 @@ lsp.setup_nvim_cmp({
 
 lsp.on_attach(function(client, bufnr)
     local opts = { buffer = bufnr }
+    lsp.default_keymaps({ buffer = bufnr })
 
     vim.keymap.set("n", "gd", function() vim.lsp.buf.definition() end, opts)
     vim.keymap.set("n", "gD", function() vim.lsp.buf.declaration() end, opts)
@@ -71,13 +72,6 @@ lsp.on_attach(function(client, bufnr)
         })
     end, opts)
 
-    if client.name == "jdtls" then
-        vim.keymap.set("n", "<leader>oi", "<Cmd>lua require'jdtls'.organize_imports()<CR>")
-        vim.keymap.set("n", "<leader>em", "<Cmd>lua require('jdtls').extract_method(true)<CR>")
-        vim.keymap.set("n", "<leader>ev", "<Cmd>lua require('jdtls').extract_variable(true)<CR>")
-        vim.keymap.set("n", "<leader>ec", "<Cmd>lua require('jdtls').extract_constant(true)<CR>")
-    end
-
     if client.name == "tsserver" then
         vim.keymap.set("n", "<leader>oi", ":TypescriptOrganizeImports<CR>")
     end
@@ -98,5 +92,7 @@ require("lspconfig").lua_ls.setup({
 require("lspconfig").emmet_ls.setup({
     filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less" },
 })
+
+lsp.skip_server_setup({ "jdtls" })
 
 lsp.setup()
