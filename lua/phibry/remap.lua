@@ -36,7 +36,8 @@ vim.keymap.set("n", "<leader>nh", vim.cmd.nohl)
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
 -- vim-maximizer
-vim.keymap.set("n", "Ω", ":MaximizerToggle<CR>")
+vim.keymap.set("n", "Ω", ":MaximizerToggle<CR>") -- eurkey
+-- vim.keymap.set("n", "µ", ":MaximizerToggle<CR>") -- ch-de
 
 -- telescope git
 vim.keymap.set("n", "<leader>gc", "<cmd>Telescope git_commits<cr>") -- list all git commits (use <cr> to checkout) ["gc" for git commits]
@@ -45,10 +46,16 @@ vim.keymap.set("n", "<leader>gb", "<cmd>Telescope git_branches<cr>") -- list git
 vim.keymap.set("n", "<leader>gs", "<cmd>Telescope git_status<cr>") -- list current changes per file with diff preview ["gs" for git status]
 
 -- window management
-vim.keymap.set("n", "Ù", "<C-w>s")
-vim.keymap.set("n", "Ì", "<C-w>v")
-vim.keymap.set("n", "ë", "<C-w>=")
-vim.keymap.set("n", "á", ":close<CR>")
+-- eurkey
+vim.keymap.set("n", "Ù", "<C-w>s")          -- H, horizontal split
+vim.keymap.set("n", "Ì", "<C-w>v")          -- V, vertical split
+vim.keymap.set("n", "ë", "<C-w>=")          -- e, equals
+vim.keymap.set("n", "á", ":close<CR>")      -- x, close
+-- ch-de
+-- vim.keymap.set("n", "Ù", "<C-w>s")          -- H, horizontal split
+-- vim.keymap.set("n", "Ù", "<C-w>v")          -- V, vertival split
+-- vim.keymap.set("n", "Ù", "<C-w>=")          -- e, horizontal split
+-- vim.keymap.set("n", "Ù", ":close<CR>")      -- x, horizontal split
 
 vim.keymap.set("n", "ù", "<C-w>h")
 vim.keymap.set("n", "ú", "<C-w>j")

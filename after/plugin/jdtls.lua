@@ -43,37 +43,41 @@ local function get_jdtls_paths()
 
     path.bundles = {}
 
+    -- vim.list_extend(path.bundles, vim.fn.glob("~/java-debug/com.microsoft.java.debug.plugin/target/com.microsoft.java.debug.plugin-*.jar", 1))
+    -- vim.list_extend(path.bundles, vim.split(vim.fn.glob("~/vscode-java-test/server/*.jar", 1), "\n"))
+    -- vim.list_extend(path.bundles, vim.split(vim.fn.glob("~/vscode-java-test/server/com.microsoft.java.test.plugin-*.jar", 1), "\n"))
+    -- com.microsoft.java.test.plugin-0.39.0.jar
     ---
     -- Include java-test bundle if present
     ---
-    local java_test_path = require('mason-registry')
-        .get_package('java-test')
-        :get_install_path()
-
-    local java_test_bundle = vim.split(
-        vim.fn.glob(java_test_path .. '/extension/server/*.jar'),
-        '\n'
-    )
-
-    if java_test_bundle[1] ~= '' then
-        vim.list_extend(path.bundles, java_test_bundle)
-    end
-
-    ---
-    -- Include java-debug-adapter bundle if present
-    ---
-    local java_debug_path = require('mason-registry')
-        .get_package('java-debug-adapter')
-        :get_install_path()
-
-    local java_debug_bundle = vim.split(
-        vim.fn.glob(java_debug_path .. '/extension/server/com.microsoft.java.debug.plugin-*.jar'),
-        '\n'
-    )
-
-    if java_debug_bundle[1] ~= '' then
-        vim.list_extend(path.bundles, java_debug_bundle)
-    end
+    -- local java_test_path = require('mason-registry')
+    --     .get_package('java-test')
+    --     :get_install_path()
+    --
+    -- local java_test_bundle = vim.split(
+    --     vim.fn.glob(java_test_path .. '/extension/server/*.jar'),
+    --     '\n'
+    -- )
+    --
+    -- if java_test_bundle[1] ~= '' then
+    --     vim.list_extend(path.bundles, java_test_bundle)
+    -- end
+    --
+    -- ---
+    -- -- Include java-debug-adapter bundle if present
+    -- ---
+    -- local java_debug_path = require('mason-registry')
+    --     .get_package('java-debug-adapter')
+    --     :get_install_path()
+    --
+    -- local java_debug_bundle = vim.split(
+    --     vim.fn.glob(java_debug_path .. '/extension/server/com.microsoft.java.debug.plugin-*.jar'),
+    --     '\n'
+    -- )
+    --
+    -- if java_debug_bundle[1] ~= '' then
+    --     vim.list_extend(path.bundles, java_debug_bundle)
+    -- end
 
     ---
     -- Useful if you're starting jdtls with a Java version that's
@@ -116,6 +120,30 @@ end
 local function enable_debugger(bufnr)
     require('jdtls').setup_dap({ hotcodereplace = 'auto' })
     require('jdtls.dap').setup_dap_main_class_configs()
+
+    vim.keymap.set('n', '<F5>', function() require('dap').continue() end)
+    vim.keymap.set('n', '<F10>', function() require('dap').step_over() end)
+    vim.keymap.set('n', '<F11>', function() require('dap').step_into() end)
+    vim.keymap.set('n', '<F12>', function() require('dap').step_out() end)
+    vim.keymap.set('n', '<leader>b', function() require('dap').toggle_breakpoint() end)
+    vim.keymap.set('n', '<leader>B', function() require('dap').set_breakpoint() end)
+    vim.keymap.set('n', '<leader>lp', function() require('dap').set_breakpoint(nil, nil, vim.fn.input('Log point message: ')) end)
+    vim.keymap.set('n', '<leader>dr', function() require('dap').repl.open() end)
+    vim.keymap.set('n', '<leader>dl', function() require('dap').run_last() end)
+    vim.keymap.set({'n', 'v'}, '<leader>dh', function()
+      require('dap.ui.widgets').hover()
+    end)
+    vim.keymap.set({'n', 'v'}, '<leader>dp', function()
+      require('dap.ui.widgets').preview()
+    end)
+    vim.keymap.set('n', '<leader>df', function()
+      local widgets = require('dap.ui.widgets')
+      widgets.centered_float(widgets.frames)
+    end)
+    vim.keymap.set('n', '<leader>ds', function()
+      local widgets = require('dap.ui.widgets')
+      widgets.centered_float(widgets.scopes)
+    end)
 
     local opts = { buffer = bufnr }
     vim.keymap.set('n', '<leader>tc', "<cmd>lua require('jdtls').test_class()<cr>", opts)

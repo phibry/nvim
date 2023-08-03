@@ -25,7 +25,8 @@ return {
         -- java
         { "mfussenegger/nvim-jdtls" },
 
-        -- typescript
-        { "jose-elias-alvarez/typescript.nvim" },
+        -- debugger
+        { "mfussenegger/nvim-dap" },
+        { "rcarriga/nvim-dap-ui" },
     }
 }

@@ -3,7 +3,6 @@ local lsp = require("lsp-zero")
 lsp.preset("recommended")
 
 lsp.ensure_installed({
-    'tsserver',
     'eslint',
     'lua_ls',
     'jdtls',
@@ -72,12 +71,7 @@ lsp.on_attach(function(client, bufnr)
         })
     end, opts)
 
-    if client.name == "tsserver" then
-        vim.keymap.set("n", "<leader>oi", ":TypescriptOrganizeImports<CR>")
-    end
 end)
-
-require("typescript").setup({})
 
 require("lspconfig").lua_ls.setup({
     settings = {
@@ -90,7 +84,7 @@ require("lspconfig").lua_ls.setup({
 })
 
 require("lspconfig").emmet_ls.setup({
-    filetypes = { "html", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less" },
+    filetypes = { "html", "javascript", "typescript", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "gopls" },
 })
 
 lsp.skip_server_setup({ "jdtls" })
