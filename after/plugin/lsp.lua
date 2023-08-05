@@ -13,7 +13,8 @@ lsp.ensure_installed({
     'gopls',
     'cssls',
     'emmet_ls',
-    'lemminx'
+    'lemminx',
+    'yamlls'
 })
 
 local cmp = require("cmp")
