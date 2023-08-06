@@ -24,7 +24,8 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
     ["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
     ["<C-y>"] = cmp.mapping.confirm({ select = true }),
     -- ["<C-CR>"] = cmp.mapping.complete(),
-    ["<Tab>"] = cmp.mapping(function(fallback)
+    -- ["<Tab>"] = cmp.mapping(function(fallback)
+    ["<C-CR>"] = cmp.mapping(function(fallback)
         -- This little snippet will confirm with tab, and if no entry is selected, will confirm the first item
         if cmp.visible() then
             local entry = cmp.get_selected_entry()
@@ -39,6 +40,8 @@ local cmp_mappings = lsp.defaults.cmp_mappings({
     end, { "i", "s", "c", }),
 })
 
+cmp_mappings["<Tab>"] = vim.NIL
+cmp_mappings["<S-Tab>"] = vim.NIL
 
 lsp.set_preferences({
     sign_icons = {}

@@ -13,5 +13,4 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup("plugins")
--- require("phibry.nordcolors")
 vim.api.nvim_set_hl(0, "WinSeparator", { bg = nil, fg = "#3B4252" })
