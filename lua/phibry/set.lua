@@ -49,4 +49,3 @@ vim.opt.timeoutlen = 2500
 
 vim.api.nvim_set_hl(0, "WinSeparator", { bg = nil, fg = "#3B4252" })
 
-vim.opt.clipboard = "unnamedplus"
