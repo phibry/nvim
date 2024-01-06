@@ -16,12 +16,24 @@ local colors = {
 
 -- harpoon
 local function harpoon()
-    local mark_idx = require("harpoon.mark").get_current_index()
-    if mark_idx == nil then
+    local current_file_harpoon_index
+    local marks_length = require("harpoon"):list():length()
+    local current_file_path = vim.fn.fnamemodify(vim.fn.expand("%:p"), ":.")
+
+    for index = 1, marks_length do
+        local harpoon_file_path = require("harpoon"):list():get(index).value
+
+        if current_file_path == harpoon_file_path then
+            current_file_harpoon_index = index
+        end
+
+    end
+
+    if current_file_harpoon_index == nil then
         return ""
     end
 
-    return mark_idx
+    return current_file_harpoon_index
 end
 
 local conditions = {
