@@ -3,7 +3,6 @@ vim.keymap.set("i", "jk", "<ESC>")
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
 vim.keymap.set("n", "<leader>pv", ":Ex<CR>")
-vim.keymap.set("n", "<leader>u", ":UndotreeShow<CR>")
 
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
@@ -26,24 +25,7 @@ vim.keymap.set("n", "<leader>Y", "\"+Y")
 
 vim.keymap.set("n", "<leader>d", "\"_d")
 
--- vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
--- vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
--- vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
--- vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
-
-vim.keymap.set("n", "<leader>nh", vim.cmd.nohl)
-
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
-
--- vim-maximizer
-vim.keymap.set("n", "Ω", ":MaximizerToggle<CR>") -- eurkey
--- vim.keymap.set("n", "µ", ":MaximizerToggle<CR>") -- ch-de
-
--- telescope git
-vim.keymap.set("n", "<leader>gc", "<cmd>Telescope git_commits<cr>") -- list all git commits (use <cr> to checkout) ["gc" for git commits]
-vim.keymap.set("n", "<leader>gfc", "<cmd>Telescope git_bcommits<cr>") -- list git commits for current file/buffer (use <cr> to checkout) ["gfc" for git file commits]
-vim.keymap.set("n", "<leader>gb", "<cmd>Telescope git_branches<cr>") -- list git branches (use <cr> to checkout) ["gb" for git branch]
-vim.keymap.set("n", "<leader>gs", "<cmd>Telescope git_status<cr>") -- list current changes per file with diff preview ["gs" for git status]
 
 -- window management
 -- eurkey
@@ -51,11 +33,6 @@ vim.keymap.set("n", "Ù", "<C-w>s")          -- H, horizontal split
 vim.keymap.set("n", "Ì", "<C-w>v")          -- V, vertical split
 vim.keymap.set("n", "ë", "<C-w>=")          -- e, equals
 vim.keymap.set("n", "á", ":close<CR>")      -- x, close
--- ch-de
--- vim.keymap.set("n", "Ù", "<C-w>s")          -- H, horizontal split
--- vim.keymap.set("n", "Ù", "<C-w>v")          -- V, vertival split
--- vim.keymap.set("n", "Ù", "<C-w>=")          -- e, horizontal split
--- vim.keymap.set("n", "Ù", ":close<CR>")      -- x, horizontal split
 
 vim.keymap.set("n", "ù", "<C-w>h")
 vim.keymap.set("n", "ú", "<C-w>j")
@@ -66,8 +43,6 @@ vim.keymap.set("n", "<A-Left>", ":vertical resize +5<CR>")
 vim.keymap.set("n", "<A-Down>", ":resize +5<CR>")
 vim.keymap.set("n", "<A-Up>", ":resize -5<CR>")
 vim.keymap.set("n", "<A-Right>", ":vertical resize -5<CR>")
-
-vim.keymap.set("n", "<leader>o", ":SymbolsOutline<CR>")
 
 vim.keymap.set("n", "<leader><leader>", function()
     vim.cmd("so")

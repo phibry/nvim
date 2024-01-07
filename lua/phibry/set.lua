@@ -1,3 +1,4 @@
+-- vim.o.background = "light"
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
