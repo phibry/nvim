@@ -1,4 +1,3 @@
--- vim.o.background = "light"
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
@@ -50,3 +49,11 @@ vim.opt.timeoutlen = 2500
 
 vim.api.nvim_set_hl(0, "WinSeparator", { bg = nil, fg = "#3B4252" })
 
+local highlight_group = vim.api.nvim_create_augroup("YankHighlight", { clear = true })
+vim.api.nvim_create_autocmd("TextYankPost", {
+    callback = function()
+        vim.highlight.on_yank()
+    end,
+    group = highlight_group,
+    pattern = "*",
+})
