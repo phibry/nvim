@@ -47,33 +47,6 @@ return {
         require("mason").setup()
         require("mason-lspconfig").setup()
 
-        local servers = {
-            lua_ls = {
-                Lua = {
-                    workspace = { checkThirdParty = false },
-                    telemetry = { enable = false },
-                    diagnostics = {
-                        globals = { "vim" },
-                    },
-                }
-            },
-            tsserver = {},
-            gopls = {
-                gopls = {
-                    completeUnimported = true,
-                    usePlaceholders = true,
-                    analyses = {
-                        unusedparams = true,
-                        unusedvariable = true,
-                    },
-                },
-            },
-            emmet_ls = {},
-            html = {},
-            jsonls = {},
-            cssls = {},
-        }
-
         local capabilities = vim.lsp.protocol.make_client_capabilities()
         capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
 
@@ -85,18 +58,70 @@ return {
             vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
         end
         mason_lspconfig.setup({
-            ensure_installed = vim.tbl_keys(servers),
+            ensure_installed = {
+                "tsserver",
+                "gopls",
+                "lua_ls",
+                "emmet_ls",
+                "html",
+                "templ",
+                -- "htmx",
+            }
         })
 
-        mason_lspconfig.setup_handlers({
-            function(server_name)
-                require("lspconfig")[server_name].setup({
-                    capabilities = capabilities,
-                    on_attach = on_attach,
-                    settings = servers[server_name],
-                    filetypes = (servers[server_name] or {}).filetypes,
-                })
-            end,
+        local lspconfig = require("lspconfig")
+
+        lspconfig.lua_ls.setup({
+            on_attach = on_attach,
+            capabilities = capabilities,
+            filetypes = { "lua" },
+            settings = {
+                Lua = {
+                    workspace = { checkThirdParty = false },
+                    telemetry = { enable = false },
+                    diagnostics = {
+                        globals = { "vim" },
+                    },
+                },
+            },
         })
+
+        lspconfig.gopls.setup({
+            on_attack = on_attach,
+            capabilities = capabilities,
+            settings = {
+                gopls = {
+                    completeUnimported = true,
+                    usePlaceholders = true,
+                    analyses = {
+                        unusedparams = true,
+                        unusedvariable = true,
+                    },
+                },
+            },
+        })
+
+        lspconfig.tsserver.setup({
+            on_attach = on_attach,
+            capabilities = capabilities,
+        })
+
+        lspconfig.html.setup({
+            on_attach = on_attach,
+            capabilities = capabilities,
+            filetypes = { "html", "templ" }
+        })
+
+        lspconfig.templ.setup({
+            on_attach = on_attach,
+            capabilities = capabilities,
+            filetypes = { "templ" }
+        })
+
+        -- lspconfig.htmx.setup({
+        --     on_attach = on_attach,
+        --     capabilities = capabilities,
+        --     filetypes = { "html", "templ" }
+        -- })
     end
 }
