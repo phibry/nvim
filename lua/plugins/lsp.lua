@@ -58,7 +58,16 @@ return {
                 }
             },
             tsserver = {},
-            gopls = {},
+            gopls = {
+                gopls = {
+                    completeUnimported = true,
+                    usePlaceholders = true,
+                    analyses = {
+                        unusedparams = true,
+                        unusedvariable = true,
+                    },
+                },
+            },
             emmet_ls = {},
             html = {},
             jsonls = {},
@@ -70,7 +79,11 @@ return {
 
 
         local mason_lspconfig = require("mason-lspconfig")
-
+        local signs = { Error = "􀁐 ", Warn = "􀇾 ", Hint = "󰠠 ", Info = "􀁞 " }
+        for type, icon in pairs(signs) do
+            local hl = "DiagnosticSign" .. type
+            vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+        end
         mason_lspconfig.setup({
             ensure_installed = vim.tbl_keys(servers),
         })
