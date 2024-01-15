@@ -17,7 +17,24 @@ return {
         local luasnip = require("luasnip")
         require("luasnip.loaders.from_vscode").lazy_load()
         luasnip.config.setup({})
+        local border = {
+            { "🭽", "FloatBorder" },
+            { "▔", "FloatBorder" },
+            { "🭾", "FloatBorder" },
+            { "▕", "FloatBorder" },
+            { "🭿", "FloatBorder" },
+            { "▁", "FloatBorder" },
+            { "🭼", "FloatBorder" },
+            { "▏", "FloatBorder" },
+        }
+
         cmp.setup({
+            window = {
+                -- completion = cmp.config.window.bordered(),
+                -- documentation = cmp.config.window.bordered(),
+                completion = { border = border },
+                documentation = { border = border },
+            },
             snippet = {
                 expand = function(args)
                     luasnip.lsp_expand(args.body)
@@ -39,7 +56,8 @@ return {
 
                 ["<Tab>"] = cmp.mapping(function(fallback)
                     if cmp.visible()
-                        then cmp.select_next_item()
+                    then
+                        cmp.select_next_item()
                     elseif luasnip.expand_or_locally_jumpable() then
                         luasnip.expand_or_jump()
                     else
@@ -57,7 +75,7 @@ return {
                 end, { "i", "s" }),
             }),
             sources = {
-                { name = "nvim_lsp"},
+                { name = "nvim_lsp" },
                 { name = "luansip" },
                 { name = "path" }
             }
