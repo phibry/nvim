@@ -50,6 +50,7 @@ vim.keymap.set("n", "<C-w><Left>", ":vertical resize -5<CR>")
 
 vim.keymap.set("n", "<C-w>h", "<C-w>s")          -- H, horizontal split
 vim.keymap.set("n", "<C-w>v", "<C-w>v")          -- V, vertical split
+vim.keymap.set("n", "<C-w>x", ":close<CR>")      -- x, close
 
 vim.keymap.set("n", "<leader><leader>", function()
     vim.cmd("so")
