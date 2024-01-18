@@ -29,20 +29,27 @@ vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><
 
 -- window management
 -- eurkey
-vim.keymap.set("n", "Ù", "<C-w>s")          -- H, horizontal split
-vim.keymap.set("n", "Ì", "<C-w>v")          -- V, vertical split
-vim.keymap.set("n", "ë", "<C-w>=")          -- e, equals
-vim.keymap.set("n", "á", ":close<CR>")      -- x, close
+-- vim.keymap.set("n", "Ù", "<C-w>s")          -- H, horizontal split
+-- vim.keymap.set("n", "Ì", "<C-w>v")          -- V, vertical split
+-- vim.keymap.set("n", "ë", "<C-w>=")          -- e, equals
+-- vim.keymap.set("n", "á", ":close<CR>")      -- x, close
+--
+-- vim.keymap.set("n", "ù", "<C-w>h")
+-- vim.keymap.set("n", "ú", "<C-w>j")
+-- vim.keymap.set("n", "ĳ", "<C-w>k")
+-- vim.keymap.set("n", "ø", "<C-w>l")
 
-vim.keymap.set("n", "ù", "<C-w>h")
-vim.keymap.set("n", "ú", "<C-w>j")
-vim.keymap.set("n", "ĳ", "<C-w>k")
-vim.keymap.set("n", "ø", "<C-w>l")
+-- vim.keymap.set("n", "<A-Left>", ":vertical resize +5<CR>")
+-- vim.keymap.set("n", "<A-Down>", ":resize +5<CR>")
+-- vim.keymap.set("n", "<A-Up>", ":resize -5<CR>")
+-- vim.keymap.set("n", "<A-Right>", ":vertical resize -5<CR>")
+vim.keymap.set("n", "<C-w><Right>", ":vertical resize +5<CR>")
+vim.keymap.set("n", "<C-w><Up>", ":resize +5<CR>")
+vim.keymap.set("n", "<C-w><Down>", ":resize -5<CR>")
+vim.keymap.set("n", "<C-w><Left>", ":vertical resize -5<CR>")
 
-vim.keymap.set("n", "<A-Left>", ":vertical resize +5<CR>")
-vim.keymap.set("n", "<A-Down>", ":resize +5<CR>")
-vim.keymap.set("n", "<A-Up>", ":resize -5<CR>")
-vim.keymap.set("n", "<A-Right>", ":vertical resize -5<CR>")
+vim.keymap.set("n", "<C-w>h", "<C-w>s")          -- H, horizontal split
+vim.keymap.set("n", "<C-w>v", "<C-w>v")          -- V, vertical split
 
 vim.keymap.set("n", "<leader><leader>", function()
     vim.cmd("so")
