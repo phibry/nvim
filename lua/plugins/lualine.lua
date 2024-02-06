@@ -22,24 +22,24 @@ return {
 
         -- harpoon
         local function harpoon()
-            local current_file_harpoon_index
-            local marks_length = require("harpoon"):list():length()
+            local current_file_harpoon_index = "-"
+            local total_marks = require("harpoon"):list():length()
             local current_file_path = vim.fn.fnamemodify(vim.fn.expand("%:p"), ":.")
 
-            for index = 1, marks_length do
-                local harpoon_file_path = require("harpoon"):list():get(index).value
-
-                if current_file_path == harpoon_file_path then
-                    current_file_harpoon_index = index
-                end
-
-            end
-
-            if current_file_harpoon_index == nil then
+            if total_marks == 0 then
                 return ""
             end
 
-            return current_file_harpoon_index
+            for index = 1, total_marks do
+                local harpoon_file_path = require("harpoon"):list():get(index).value
+
+                if current_file_path == harpoon_file_path then
+                    current_file_harpoon_index = tostring(index)
+                end
+            end
+
+            return string.format("%s/%d", current_file_harpoon_index, total_marks)
+            -- return string.format("󱡅 %s/%d", current_file_harpoon_index, total_marks)
         end
 
         local conditions = {

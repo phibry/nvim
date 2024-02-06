@@ -10,12 +10,13 @@ return {
                 return vim.fn.executable "make" == 1
             end
         },
-        -- "nvim-tree/nvim-web-devicons"
+        "nvim-tree/nvim-web-devicons"
     },
 
     config = function()
         local builtin = require("telescope.builtin")
         vim.keymap.set("n", "<leader>pf", builtin.find_files, {})
+        vim.keymap.set("n", "<leader>?", ":Telescope oldfiles<CR>", {})
         vim.keymap.set("n", "<leader>pw", "<CMD>Telescope grep_string<CR>")
         vim.keymap.set("n", "<leader>ps", builtin.live_grep, {})
         vim.keymap.set("n", "<C-p>", builtin.git_files, {})

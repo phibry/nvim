@@ -44,8 +44,13 @@ return {
         end
 
         -- mason
-        require("mason").setup()
+        require("mason").setup({
+            ui = {
+                border = "rounded",
+            },
+        })
         require("mason-lspconfig").setup()
+
 
         local capabilities = vim.lsp.protocol.make_client_capabilities()
         capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
@@ -66,10 +71,17 @@ return {
                 "html",
                 "templ",
                 -- "htmx",
+                "yamlls"
             }
         })
 
         local lspconfig = require("lspconfig")
+
+        lspconfig.yamlls.setup({
+            on_attach = on_attach,
+            capabilities = capabilities,
+            filetypes = { "yml", "yaml" }
+        })
 
         lspconfig.lua_ls.setup({
             on_attach = on_attach,
