@@ -9,6 +9,10 @@ return {
             ensure_installed = { "go", "javascript", "typescript", "tsx", "css", "html", "lua", "markdown", "json",
                 "vimdoc", "vim", "bash" },
 
+            autotag = {
+                enable = true
+            },
+
             auto_install = true,
 
             sync_install = false,

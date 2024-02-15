@@ -131,7 +131,7 @@ return {
         ins_left {
             'filename',
             cond = conditions.buffer_not_empty,
-            color = { fg = colors.orange, gui = 'bold' },
+            color = { fg = colors.fg, gui = 'bold' },
         }
 
         ins_left {
@@ -157,7 +157,7 @@ return {
         ins_right {
             'branch',
             icon = '',
-            color = { fg = colors.violet, gui = 'bold' },
+            color = { fg = colors.fg, gui = 'bold' },
         }
 
         ins_right {
