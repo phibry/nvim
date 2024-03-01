@@ -41,31 +41,22 @@ return {
                     documentation = cmp.config.window.bordered(),
                 },
                 mapping = cmp.mapping.preset.insert({
-                    ["<C-k>"] = cmp.mapping.select_prev_item(), -- previous suggestion
-                    ["<C-j>"] = cmp.mapping.select_next_item(), -- next suggestion
-                    ["<Tab>"] = cmp.mapping(function(fallback)
-                        if cmp.visible() then
-                            cmp.select_next_item()
-                        elseif luasnip.expand_or_jumpable() then
+                    ["<C-p>"] = cmp.mapping.select_prev_item(), -- previous suggestion
+                    ["<C-n>"] = cmp.mapping.select_next_item(), -- next suggestion
+                    ["<C-y>"] = cmp.mapping.confirm { select = true },
+                    ["<C-Space>"] = cmp.mapping.complete {},
+                    ["<C-l>"] = cmp.mapping(function()
+                        if luasnip.expand_or_locally_jumpable() then
                             luasnip.expand_or_jump()
-                        else
-                            fallback()
                         end
                     end, { "i", "s" }),
-                    ["<S-Tab>"] = cmp.mapping(function(fallback)
-                        if cmp.visible() then
-                            cmp.select_prev_item()
-                        elseif luasnip.jumpable(-1) then
+                    ["<C-h>"] = cmp.mapping(function()
+                        if luasnip.locally_jumpable(-1) then
                             luasnip.jump(-1)
-                        else
-                            fallback()
                         end
                     end, { "i", "s" }),
-                    ["<C-u>"] = cmp.mapping.scroll_docs(4),            -- scroll up preview
-                    ["<C-d>"] = cmp.mapping.scroll_docs(-4),           -- scroll down preview
-                    ["<C-Space>"] = cmp.mapping.complete({}),          -- show completion suggestions
-                    ["<C-c>"] = cmp.mapping.abort(),                   -- close completion window
-                    ["<CR>"] = cmp.mapping.confirm({ select = true }), -- select suggestion
+                    ["<C-d>"] = cmp.mapping.scroll_docs(4),  -- scroll up preview
+                    ["<C-u>"] = cmp.mapping.scroll_docs(-4), -- scroll down preview
                 }),
                 -- sources for autocompletion
                 sources = cmp.config.sources({
