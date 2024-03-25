@@ -53,6 +53,7 @@ vim.keymap.set("n", "<C-w><Right>", ":vertical resize +5<CR>")
 vim.keymap.set("n", "<C-w><Up>", ":resize +5<CR>")
 vim.keymap.set("n", "<C-w><Down>", ":resize -5<CR>")
 vim.keymap.set("n", "<C-w><Left>", ":vertical resize -5<CR>")
+vim.keymap.set("n", "<C-w>e", "<C-w>=")
 
 -- close pane
 vim.keymap.set("n", "<C-w>x", ":close<CR>") -- x, close
